@@ -1,4 +1,4 @@
-use std::{fs, borrow::Borrow};
+use std::fs;
 use fancy_regex::Regex;
 
 fn main() {
