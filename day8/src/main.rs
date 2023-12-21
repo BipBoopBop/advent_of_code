@@ -71,28 +71,6 @@ fn part_two(input_text: String) -> u64 {
         steps.push(s);
     }
 
-    println!("{:?}", steps);
-
-    // while &nodes.iter().filter(|n| n.ends_with("Z")).count() != &nodes.len() {
-    //     steps += 1;
-    //     let next_instruction = *instruction_iter.next().unwrap();
-    //     for node in &mut nodes{
-    //         *node = *network[node].get(next_instruction).unwrap();
-    //     }
-    //     if steps % 1000000 ==0 { println!("{:?}", nodes); }
-    // }
-
-    
-    // let mut node = "CXZ"; 
-    // let mut check = 0;
-    // while !node.ends_with("Z") || check==0 {
-    //     steps += 1;
-    //     check = 1;
-    //     node = network[node].get(*instruction_iter.next().unwrap()).unwrap();
-        
-    // }
-    println!("lcm");
-
     lcm(steps)
 }
 
