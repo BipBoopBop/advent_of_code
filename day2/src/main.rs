@@ -62,9 +62,6 @@ fn part_two(input: String) -> i32 {
         let mut highest_blue =0;
 
         let line_split = line.split(":").collect::<Vec<&str>>();
-        let game_id = line_split[0]
-            .chars().filter(|c| c.is_numeric()).collect::<String>()
-            .parse::<i32>().unwrap();
 
         for draw in line_split[1].split(";"){
             for set in draw.split(","){

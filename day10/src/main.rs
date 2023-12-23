@@ -59,22 +59,22 @@ fn part_one(input_text: String) -> usize {
         if let Some((i,c)) = current_pipe {
             match c {
                 '|' => {
-                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+line_len && *next_i != previous_pipe[0].0) || (*next_i == i-line_len && *next_i != previous_pipe[0].0)).unwrap());
+                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+line_len && *next_i != previous_pipe[1].0) || (*next_i == i-line_len && *next_i != previous_pipe[1].0)).unwrap());
                 },
                 '-' => {
-                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+1 && *next_i != previous_pipe[0].0) || (*next_i == i-1 && *next_i != previous_pipe[0].0)).unwrap());
+                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+1 && *next_i != previous_pipe[1].0) || (*next_i == i-1 && *next_i != previous_pipe[1].0)).unwrap());
                 },
                 'L' => {
-                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+1 && *next_i != previous_pipe[0].0) || (*next_i == i-line_len && *next_i != previous_pipe[0].0)).unwrap());
+                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+1 && *next_i != previous_pipe[1].0) || (*next_i == i-line_len && *next_i != previous_pipe[1].0)).unwrap());
                 },
                 'J' => {
-                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i-1 && *next_i != previous_pipe[0].0) || (*next_i == i-line_len && *next_i != previous_pipe[0].0)).unwrap());
+                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i-1 && *next_i != previous_pipe[1].0) || (*next_i == i-line_len && *next_i != previous_pipe[1].0)).unwrap());
                 },
                 '7' => {
-                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+line_len && *next_i != previous_pipe[0].0) || (*next_i == i-1 && *next_i != previous_pipe[0].0)).unwrap());
+                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+line_len && *next_i != previous_pipe[1].0) || (*next_i == i-1 && *next_i != previous_pipe[1].0)).unwrap());
                 },
                 'F' => {
-                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+line_len && *next_i != previous_pipe[0].0) || (*next_i == i+1 && *next_i != previous_pipe[0].0)).unwrap());
+                    linked_pipes.push_back(*input.iter().find(|(next_i, _)| (*next_i == i+line_len && *next_i != previous_pipe[1].0) || (*next_i == i+1 && *next_i != previous_pipe[1].0)).unwrap());
                 },
                 _ => {}
             }
@@ -82,7 +82,7 @@ fn part_one(input_text: String) -> usize {
         }
     }
 
-    linked_pipes.len()/2 -1
+    linked_pipes.len()/2
 }
 
 
