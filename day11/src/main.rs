@@ -58,6 +58,64 @@ fn part_one(input_text: String) -> i32 {
     sum
 }
 
-fn part_two(input_text: String) -> i32 {
-    0
+fn part_two(input_text: String) -> i64 {
+    let mut sum = 0;
+    let mut input: Vec<Vec<char>> = Default::default();
+
+    let mut empty_row: Vec<usize> = Vec::new();
+
+    for (i,s) in input_text.lines().enumerate() {
+        let mut line = Vec::<char>::new();
+        for c in s.chars() {
+            line.push(c)
+        }
+        input.push(line);
+        if s.chars().all(|c| c=='.') {
+            empty_row.push(i);
+        }
+    }
+
+    let mut empty_col: Vec<usize> = Vec::new();
+    
+    for i in 0..input[0].len() {
+        let mut count = 0;
+        for ii in 0..input.len(){
+            if input[ii][i] == '.' { count += 1 }
+        }
+        if count == input.len() { empty_col.push(i) }
+    }
+
+    // for l in &input {
+    //     for c in l {
+    //         print!("{c}, ")
+    //     }
+    //     println!();
+    // }
+    // println!();
+
+    let mut galaxies: Vec<(usize,usize)> = Vec::new();
+
+    for i in 0..input.len() {
+        for ii in 0..input[0].len() {
+            if input[i][ii] == '#' { galaxies.push((i,ii)); }
+        }
+    }
+    
+    while let Some((g_r,g_c)) = galaxies.pop() {
+        let empty_g_row = empty_row.iter().fold(0, |acc, i| if g_r > *i { acc+1 } else {acc + 0});
+        let empty_g_col = empty_col.iter().fold(0, |acc, i| if g_c > *i { acc+1 } else {acc + 0});
+        for (r,c) in &galaxies{
+            let empty_r = empty_row.iter().fold(0, |acc, i| if r > i { acc+1 } else {acc + 0});
+            let empty_c = empty_col.iter().fold(0, |acc, i| if c > i { acc+1 } else {acc + 0});
+            sum += ((g_r as i64 + 1000000 * empty_g_row - empty_g_row) as i64 
+                 - (*r as i64 + 1000000 * empty_r - empty_r) as i64)
+                 .abs()
+                + ((g_c as i64 + 1000000 * empty_g_col - empty_g_col ) as i64
+                 - (*c as i64 + 1000000 * empty_c - empty_c) as i64)
+                 .abs()
+        }
+    }
+
+    
+    sum
 }
